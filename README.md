@@ -13,14 +13,14 @@
 
 ## Run ABCI app and API
 1. open 4 terminal window
-1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run ABCI/abci-server.go tcp://127.0.0.1:46658`
-1. `tendermint init` and `tendermint unsafe_reset_all` and then `tendermint node --consensus.create_empty_blocks=false`
-1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run API/api-server.go 127.0.0.1:46657`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run abci/server.go tcp://127.0.0.1:46658`
+1. `tendermint init && tendermint unsafe_reset_all && tendermint node --consensus.create_empty_blocks=false`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go`
 
 ## Create and check identity
 ### Check identity
-1. `curl http://127.0.0.1:8000/check_identifier -X GET -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"no"}`
+1. `curl http://127.0.0.1:8000/identity/cid/id/1234567890123` should got result `"{... "log":"does not exists" ...}`
 ### Create identity
-1. `curl http://127.0.0.1:8000/create_identity_with_pub_key -X POST -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"success"}`
+1. `curl http://127.0.0.1:8000/identity -X POST -H 'Content-Type: application/json' -d "{ \"namespace\":\"cid\", \"id\":\"1234567890123\"}"` should got result `{... "log":"success" ...}`
 ### Check identity after created
-1. `curl http://127.0.0.1:8000/check_identifier -X GET -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"yes"}`
+1. `curl http://127.0.0.1:8000/identity/cid/id/1234567890123` should got result `{... "log":"exists" ...}`
