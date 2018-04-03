@@ -40,6 +40,9 @@ func GetIdentifier(c echo.Context) error {
 	defer resp.Body.Close()
 
 	var body Response
-	json.NewDecoder(resp.Body).Decode(&body)
+	err = json.NewDecoder(resp.Body).Decode(&body)
+	if err != nil {
+		return err
+	}
 	return c.JSON(http.StatusOK, body)
 }
