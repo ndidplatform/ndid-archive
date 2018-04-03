@@ -1,42 +1,33 @@
 # Identity
-## GET /check_identifier
+## GET /identity/cid/id/1234567890123
 
 * Content-Type: "application/json; charset=utf-8"
 * Accept: "application/json"
-```json
-{
- "Namespace":"cid",
- "Identifier":"1234567890123"
-}
-```
 ===
 ### Expected response
 * Status: `200`
-* Content-Type: "text/plain; charset=utf-8"
-// * Content-Type: "application/json; charset=utf-8"
+* Content-Type: "application/json; charset=UTF-8"
 ```json
 {
   "result": "no"
 }
 ```
 
-## POST /create_identity_with_pub_key
+## POST /identity
 * Content-Type: "application/json; charset=utf-8"
 * Accept: "application/json"
 
 ```json
 {
- "Namespace": "cid",
- "Identifier":"1234567890123"
+ "namespace": "cid",
+ "id":"1234567890123"
 }
 ```
 
 ===
 ### Expected response
-// * Status: `201`
-// * Content-Type: "application/json; charset=utf-8"
-* Status: `200`
-* Content-Type: "text/plain; charset=utf-8"
+* Status: `201`
+* Content-Type: "application/json; charset=UTF-8"
 
 ```json
 {"result":"success"}

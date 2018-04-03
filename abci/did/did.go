@@ -79,8 +79,8 @@ func (app *DIDApplication) DeliverTx(tx []byte) types.ResponseDeliverTx {
 	namespace := parts[2]
 	identifier := parts[3]
 
-	if method == "create_identity_with_pub_key" {
-		fmt.Println("create_identity_with_pub_key")
+	if method == "CreateIdentity" {
+		fmt.Println("CreateIdentity")
 		key, uuid := namespace+"|"+identifier, namespace+identifier // TODO change UUID
 
 		//check exist
