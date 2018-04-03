@@ -21,6 +21,6 @@
 ### Check identity
 1. `curl http://127.0.0.1:8000/check_identifier -X GET -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"no"}`
 ### Create identity
-1. `curl http://localhost:8000/create_identity_with_pub_key -X POST -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"success"}`
+1. `curl http://127.0.0.1:8000/create_identity_with_pub_key -X POST -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"success"}`
 ### Check identity after created
 1. `curl http://127.0.0.1:8000/check_identifier -X GET -H 'Content-Type: application/json' -d "{ \"Namespace\":\"cid\", \"Identifier\":\"1234567890123\"}"` should got result `{"result":"yes"}`
