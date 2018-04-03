@@ -39,17 +39,7 @@ func GetIdentifier(c echo.Context) error {
 	}
 	defer resp.Body.Close()
 
-	var body interface{}
+	var body Response
 	json.NewDecoder(resp.Body).Decode(&body)
-	log := (body.(map[string]interface{})["result"]).(map[string]interface{})["response"]
-	log = log.(map[string]interface{})["log"]
-
-	result := map[string]string{}
-	if log == "exists" {
-		result["result"] = "yes"
-	} else {
-		result["result"] = "no"
-	}
-
-	return c.JSON(http.StatusOK, result)
+	return c.JSON(http.StatusOK, body)
 }
