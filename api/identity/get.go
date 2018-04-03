@@ -15,7 +15,7 @@ func GetIdentifier(c echo.Context) error {
 	id := c.Param("id")
 
 	// prepare data
-	funcName := "Identifier"
+	funcName := "GetIdentifier"
 	tx := []byte("\"" + funcName + "," + namespace + "," + id + "\"")
 	url := "http://" + tendermintAddr + "/abci_query?data=" + string(tx)
 

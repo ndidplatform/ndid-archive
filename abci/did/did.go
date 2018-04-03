@@ -133,7 +133,7 @@ func (app *DIDApplication) Query(reqQuery types.RequestQuery) (resQuery types.Re
 	namespace := parts[1]
 	identifier := parts[2]
 
-	if method == "check_identifier" {
+	if method == "GetIdentifier" {
 
 		key := namespace + "|" + identifier
 		value := app.state.db.Get(prefixKey([]byte(key)))
