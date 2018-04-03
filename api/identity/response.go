@@ -10,3 +10,19 @@ type Response struct {
 		} `json:"response"`
 	} `json:"result"`
 }
+
+type ResponseDeliver struct {
+	Result struct {
+		Height  int `json:"height"`
+		CheckTx struct {
+			Fee struct{} `json:"fee"`
+		} `json:"check_tx"`
+		DeliverTx struct {
+			Log string   `json:"log"`
+			Fee struct{} `json:"fee"`
+		} `json:"deliver_tx"`
+		Hash string `json:"hash"`
+	} `json:"result"`
+	Jsonrpc string `json:"jsonrpc"`
+	ID      string `json:"id"`
+}

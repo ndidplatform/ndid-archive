@@ -46,17 +46,7 @@ func CreateIdentity(c echo.Context) error {
 	}
 	defer resp.Body.Close()
 
-	var body interface{}
+	var body ResponseDeliver
 	json.NewDecoder(resp.Body).Decode(&body)
-	errCode := (body.(map[string]interface{})["result"]).(map[string]interface{})["deliver_tx"]
-	errCode = errCode.(map[string]interface{})["code"]
-
-	result := map[string]string{}
-	if errCode == nil {
-		result["result"] = "success"
-	} else {
-		result["result"] = "fail"
-	}
-
-	return c.JSON(http.StatusCreated, result)
+	return c.JSON(http.StatusCreated, body)
 }

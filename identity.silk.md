@@ -26,10 +26,7 @@
 ### Expected response
 * Status: `201`
 * Content-Type: "application/json; charset=UTF-8"
-
-```json
-{"result":"success"}
-```
+* Data.result.deliver_tx.log: "success"
 
 ## GET /identity/cid/id/1234567890123
 
