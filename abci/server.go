@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"./did"
 	"github.com/fatih/color"
+	"github.com/ndidplatform/ndid/abci/did"
 	server "github.com/tendermint/abci/server"
 	"github.com/tendermint/abci/types"
 	cmn "github.com/tendermint/tmlibs/common"
