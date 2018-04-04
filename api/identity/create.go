@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
+	"github.com/ndidplatform/ndid/api/client/tendermint"
 	cmn "github.com/tendermint/tmlibs/common"
 )
 
@@ -23,14 +24,13 @@ func CreateIdentity(c echo.Context) error {
 	nonce := cmn.RandStr(12)
 	fn := "CreateIdentity"
 	tx := []byte("\"" + nonce + "," + fn + "," + sid.Namespace + "," + sid.Id + "\"")
-	url := "http://" + tendermintAddr + "/broadcast_tx_commit?tx=" + string(tx)
+	path := "/broadcast_tx_commit?tx=" + string(tx)
 
 	fmt.Println(string(tx))
 
 	var body ResponseDeliver
-	t := New(url)
-	err := t.Decode(&body)
-	if err != nil {
+	t := tendermint.New(path)
+	if err := t.Decode(&body); err != nil {
 		return err
 	}
 	return c.JSON(http.StatusCreated, body)

@@ -1,15 +1,18 @@
-package identity
+package tendermint
 
 import (
 	"encoding/json"
 	"net/http"
 )
 
+var tendermintAddr = "127.0.0.1:46657"
+
 type Tendermint struct {
 	url string
 }
 
-func New(url string) *Tendermint {
+func New(path string) *Tendermint {
+	url := "http://" + tendermintAddr + path
 	return &Tendermint{
 		url: url,
 	}
