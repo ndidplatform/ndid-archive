@@ -1,7 +1,6 @@
 package identity
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -9,20 +8,20 @@ import (
 )
 
 func GetIdentifier(c echo.Context) error {
-	namespace := c.Param("ns")
-	id := c.Param("id")
-
-	// prepare data
-	funcName := "GetIdentifier"
-	tx := []byte("\"" + funcName + "," + namespace + "," + id + "\"")
-	path := "/abci_query?data=" + string(tx)
-
-	fmt.Println(string(tx))
+	path := buildQueryPath(c.Param("ns"), c.Param("id"))
 
 	var body Response
 	t := tendermint.New(path)
 	if err := t.Decode(&body); err != nil {
 		return err
 	}
+
 	return c.JSON(http.StatusOK, body)
+}
+
+func buildQueryPath(namespace, id string) (path string) {
+	funcName := "GetIdentifier"
+	tx := []byte("\"" + funcName + "," + namespace + "," + id + "\"")
+	path = "/abci_query?data=" + string(tx)
+	return
 }

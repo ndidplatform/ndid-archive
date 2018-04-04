@@ -1,7 +1,6 @@
 package identity
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -20,18 +19,21 @@ func CreateIdentity(c echo.Context) error {
 		return err
 	}
 
-	// prepare tx
-	nonce := cmn.RandStr(12)
-	fn := "CreateIdentity"
-	tx := []byte("\"" + nonce + "," + fn + "," + sid.Namespace + "," + sid.Id + "\"")
-	path := "/broadcast_tx_commit?tx=" + string(tx)
-
-	fmt.Println(string(tx))
+	path := buildBroadcastPath(sid)
 
 	var body ResponseDeliver
 	t := tendermint.New(path)
 	if err := t.Decode(&body); err != nil {
 		return err
 	}
+
 	return c.JSON(http.StatusCreated, body)
+}
+
+func buildBroadcastPath(sid *SID) (path string) {
+	nonce := cmn.RandStr(12)
+	fn := "CreateIdentity"
+	tx := []byte("\"" + nonce + "," + fn + "," + sid.Namespace + "," + sid.Id + "\"")
+	path = "/broadcast_tx_commit?tx=" + string(tx)
+	return
 }
