@@ -8,13 +8,13 @@ import (
 	cmn "github.com/tendermint/tmlibs/common"
 )
 
-type SID struct {
+type Sid struct {
 	Namespace string `json:"namespace"`
 	Id        string `json:"id"`
 }
 
 func CreateIdentity(c echo.Context) error {
-	sid := new(SID)
+	sid := new(Sid)
 	if err := c.Bind(sid); err != nil {
 		return err
 	}
