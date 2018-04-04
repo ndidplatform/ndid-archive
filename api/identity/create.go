@@ -30,7 +30,7 @@ func CreateIdentity(c echo.Context) error {
 	return c.JSON(http.StatusCreated, body)
 }
 
-func buildBroadcastPath(sid *SID) (path string) {
+func buildBroadcastPath(sid *Sid) (path string) {
 	nonce := cmn.RandStr(12)
 	fn := "CreateIdentity"
 	tx := []byte("\"" + nonce + "," + fn + "," + sid.Namespace + "," + sid.Id + "\"")
