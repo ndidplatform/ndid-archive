@@ -6,8 +6,6 @@ import (
 	"github.com/ndidplatform/ndid/api/identity"
 )
 
-var tendermintAddr string
-
 func main() {
 	e := echo.New()
 
