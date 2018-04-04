@@ -1,7 +1,6 @@
 package identity
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -28,26 +27,8 @@ func CreateIdentity(c echo.Context) error {
 
 	fmt.Println(string(tx))
 
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-	client := &http.Client{
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return http.ErrUseLastResponse
-		},
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
-
 	var body ResponseDeliver
-	err = json.NewDecoder(resp.Body).Decode(&body)
+	err := New(url, &body)
 	if err != nil {
 		return err
 	}
