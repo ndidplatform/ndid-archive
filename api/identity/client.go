@@ -5,8 +5,18 @@ import (
 	"net/http"
 )
 
-func New(url string, body interface{}) error {
-	req, err := http.NewRequest("GET", url, nil)
+type Tendermint struct {
+	url string
+}
+
+func New(url string) *Tendermint {
+	return &Tendermint{
+		url: url,
+	}
+}
+
+func (t *Tendermint) Decode(body interface{}) error {
+	req, err := http.NewRequest("GET", t.url, nil)
 	if err != nil {
 		return err
 	}

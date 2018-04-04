@@ -28,7 +28,8 @@ func CreateIdentity(c echo.Context) error {
 	fmt.Println(string(tx))
 
 	var body ResponseDeliver
-	err := New(url, &body)
+	t := New(url)
+	err := t.Decode(&body)
 	if err != nil {
 		return err
 	}
