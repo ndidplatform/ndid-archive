@@ -25,3 +25,43 @@
 1. `curl http://127.0.0.1:8000/identity -X POST -H 'Content-Type: application/json' -d "{ \"namespace\":\"cid\", \"id\":\"1234567890123\"}"` should got result `{... "log":"success" ...}`
 ### Check identity after created
 1. `curl http://127.0.0.1:8000/identity/cid/1234567890123` should got result `{... "log":"exists" ...}`
+
+
+
+## WIP
+// Scenario: Authentication only
+ ```sh
+curl -XPOST -H "Content-type: application/json" -d '{
+  "data_request_list": [],
+  "request_message": "ขอยืนยันตัวตน",
+  "min_ial": 2,
+  "min_aal": 1,
+  "min_idp": 1,
+  "timeout": 4320,
+  "reference_id": "e3cb44c9-8848-4dec-98c8-8083f373b1f7",
+  "call_back_url": ""
+}' 'http://127.0.0.1:8000/rp/requests/cid/1234567890123'
+ ```
+ 
+// Scenario: ขอ Statement จาก 1 bank เพื่อขอ**วีซ่า**
+ ```sh
+curl -XPOST -H "Content-type: application/json" -d '{
+  "data_request_list": [
+    {
+      "service_id": "bank_statement",
+      "as_id": "AS1",
+      "request_params": {
+        "format": "pdf",
+        "language": "en"
+      }
+    }
+  ],
+  "request_message": "ขอ Bank statement เพื่อทำ VISA ที่สถานฑูตลาว",
+  "min_ial": 2,
+  "min_aal": 1,
+  "min_idp": 1,
+  "timeout": 4320,
+  "reference_id": "e3cb44c9-8848-4dec-98c8-8083f373b1f7",
+  "call_back_url": ""
+}' 'http://127.0.0.1:8000/rp/requests/cid/1234567890123'
+ ```
