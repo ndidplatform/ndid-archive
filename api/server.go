@@ -12,7 +12,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/identity/:ns/id/:id", identity.GetIdentifier)
+	e.GET("/identity/:ns/:id", identity.GetIdentifier)
 	e.POST("/identity", identity.CreateIdentity)
 
 	e.Logger.Fatal(e.Start(":8000"))
