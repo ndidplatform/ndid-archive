@@ -20,8 +20,8 @@
 
 ## Create and check identity
 ### Check identity
-1. `curl http://127.0.0.1:8000/identity/cid/id/1234567890123` should got result `"{... "log":"does not exists" ...}`
+1. `curl http://127.0.0.1:8000/identity/cid/1234567890123` should got result `"{... "log":"does not exists" ...}`
 ### Create identity
 1. `curl http://127.0.0.1:8000/identity -X POST -H 'Content-Type: application/json' -d "{ \"namespace\":\"cid\", \"id\":\"1234567890123\"}"` should got result `{... "log":"success" ...}`
 ### Check identity after created
-1. `curl http://127.0.0.1:8000/identity/cid/id/1234567890123` should got result `{... "log":"exists" ...}`
+1. `curl http://127.0.0.1:8000/identity/cid/1234567890123` should got result `{... "log":"exists" ...}`
