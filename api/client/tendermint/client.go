@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-var tendermintAddr = "127.0.0.1:46657"
+var tendermintAddr = "127.0.0.1:45000"
 
 type Tendermint struct {
 	url string
