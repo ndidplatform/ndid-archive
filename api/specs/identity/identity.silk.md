@@ -1,5 +1,5 @@
 # Identity
-## GET /identity/cid/id/1234567890123
+## GET /identity/cid/1234567890123
 
 * Content-Type: "application/json; charset=utf-8"
 * Accept: "application/json"
@@ -28,7 +28,7 @@
 * Content-Type: "application/json; charset=UTF-8"
 * Data.result.deliver_tx.log: "success"
 
-## GET /identity/cid/id/1234567890123
+## GET /identity/cid/1234567890123
 
 * Content-Type: "application/json; charset=utf-8"
 * Accept: "application/json"
