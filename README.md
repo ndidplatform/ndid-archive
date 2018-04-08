@@ -13,11 +13,19 @@
 1. `go get -u github.com/tendermint/abci/cmd/abci-cli`
 1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go get ./...`
 
-## Run ABCI app and API
+## Run IdP node
 1. open 4 terminal window
-1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run abci/server.go tcp://127.0.0.1:46658`
-1. `tendermint init && tendermint unsafe_reset_all && tendermint node --consensus.create_empty_blocks=false`
-1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run abci/server.go tcp://127.0.0.1:46000`
+1. `tendermint --home ./config/tendermint/RP unsafe_reset_all && tendermint --home ./config/tendermint/RP node --consensus.create_empty_blocks=false`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go -port :8000 -tenderm 127.0.0.1:45000`
+1. test call API `curl http://127.0.0.1:8000/identity/cid/1234567890123`
+
+## Run RP node
+1. open 4 terminal window
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run abci/server.go tcp://127.0.0.1:46001`
+1. `tendermint --home ./config/tendermint/RP unsafe_reset_all && tendermint --home ./config/tendermint/RP node --consensus.create_empty_blocks=false`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go -port :8001 -tenderm 127.0.0.1:45001`
+1. test call API `curl http://127.0.0.1:8001/identity/cid/1234567890123`
 
 ## API specs
 ### Testing

@@ -5,14 +5,14 @@ import (
 	"net/http"
 )
 
-var tendermintAddr = "127.0.0.1:45000"
+var TendermintAddr string
 
 type Tendermint struct {
 	url string
 }
 
 func New(path string) *Tendermint {
-	url := "http://" + tendermintAddr + path
+	url := "http://" + TendermintAddr + path
 	return &Tendermint{
 		url: url,
 	}
