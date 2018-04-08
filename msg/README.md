@@ -26,7 +26,7 @@ func main() {
 
 **Topic:** Receiver node id exp: node_id_12344
 
-**msg:**   string message that want to send to node id
+**receivedMessageCallback:** callback function, will trigger when new message arrive
 ```go
 package main
 
