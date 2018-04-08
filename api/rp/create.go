@@ -33,7 +33,6 @@ type Response struct {
 
 func CreateRequest(c echo.Context) error {
 
-	response := new(Response)
 	request := new(Requests)
 	if err := c.Bind(request); err != nil {
 		return err
@@ -47,12 +46,12 @@ func CreateRequest(c echo.Context) error {
 
 	//Input validation
 	//Check Ref ID is already exists
-	old_request_id_bytes, err := db.Get([]byte(request.ReferenceID), nil)
+	oldRequestId, err := db.Get([]byte(request.ReferenceID), nil)
 	if err != nil {
-		new_request_id := uuid.NewV4()
+		newRequestId := uuid.NewV4()
 
 		// Store (reference ID → request ID) in node’s database
-		err = db.Put([]byte(request.ReferenceID), new_request_id.Bytes(), nil)
+		err = db.Put([]byte(request.ReferenceID), newRequestId.Bytes(), nil)
 		if err != nil {
 			return err
 		}
@@ -61,13 +60,13 @@ func CreateRequest(c echo.Context) error {
 
 		// TODO: Create messaging request to node_ids
 
-		// Return request_id
-		response.RequestID = new_request_id
-		return c.JSON(http.StatusCreated, response)
-	} else {
-		// TODO: return the result of that request
-		old_request_id, _ := uuid.FromBytes(old_request_id_bytes)
-		response.RequestID = old_request_id
-		return c.JSON(http.StatusCreated, response)
+		return c.JSON(http.StatusCreated, &Response{newRequestId})
 	}
+
+	id, err := uuid.FromBytes(oldRequestId)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err)
+	}
+
+	return c.JSON(http.StatusCreated, &Response{id})
 }
