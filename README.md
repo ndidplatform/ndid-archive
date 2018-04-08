@@ -6,6 +6,7 @@
 - [Install Go](https://golang.org/dl/) follow by [installation instructions.](https://golang.org/doc/install)
 - Tendermint >= 0.16.0
 - [Install Tendermint](http://tendermint.readthedocs.io/projects/tools/en/master/index.html) follow by [installation instructions.](http://tendermint.readthedocs.io/projects/tools/en/master/install.html)
+- [Go dependency management tool](https://github.com/golang/dep)
 
 ## Setup
 1. `go get github.com/ndidplatform/ndid`
@@ -42,7 +43,7 @@ curl -XPOST -H "Content-type: application/json" -d '{
   "call_back_url": ""
 }' 'http://127.0.0.1:8000/rp/requests/cid/1234567890123'
  ```
- 
+
 // Scenario: ขอ Statement จาก 1 bank เพื่อขอ**วีซ่า**
  ```sh
 curl -XPOST -H "Content-type: application/json" -d '{
