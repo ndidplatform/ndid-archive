@@ -17,7 +17,7 @@
 1. open 4 terminal window
 1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run abci/server.go tcp://127.0.0.1:46658`
 1. `tendermint init && tendermint unsafe_reset_all && tendermint node --consensus.create_empty_blocks=false`
-1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go` or `go run api/server.go -port :8000`
+1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go` or `go run api/server.go -port :8000 -tenderm 127.0.0.1:46657`
 
 ## API specs
 ### Testing
