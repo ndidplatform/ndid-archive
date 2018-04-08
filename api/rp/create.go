@@ -49,10 +49,7 @@ func CreateRequest(c echo.Context) error {
 	//Check Ref ID is already exists
 	old_request_id_bytes, err := db.Get([]byte(request.ReferenceID), nil)
 	if err != nil {
-		new_request_id, err := uuid.NewV4()
-		if err != nil {
-			return err
-		}
+		new_request_id := uuid.NewV4()
 
 		// Store (reference ID → request ID) in node’s database
 		err = db.Put([]byte(request.ReferenceID), new_request_id.Bytes(), nil)
