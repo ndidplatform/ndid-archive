@@ -1,4 +1,4 @@
-# Scenario: Requesting a bank statement for Visa application
+# Scenario: Authentication Only
 # RP → Platform
 ## POST /rp/requests/citizenid/01234567890123
 * Content-Type: "application/json; charset=UTF-8"
