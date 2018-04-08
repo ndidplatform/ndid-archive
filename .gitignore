@@ -2,3 +2,7 @@
 localDB/
 vendor/
 Gopkg.lock
+
+# tendermint data
+/config/tendermint/RP/data
+/config/tendermint/IdP/data
