@@ -98,6 +98,12 @@ func (app *DIDApplication) DeliverTx(tx []byte) types.ResponseDeliverTx {
 			Code: code.CodeTypeOK,
 			Log:  fmt.Sprintf("success")}
 
+	} else if method == "CreateIDPResponse" {
+		fmt.Println("CreateIDPResponse")
+		// TODO add logic for store idp response
+		return types.ResponseDeliverTx{
+			Code: code.CodeTypeOK,
+			Log:  fmt.Sprintf("success")}
 	} else {
 		fmt.Println("else")
 		key, value = tx, tx
@@ -146,6 +152,9 @@ func (app *DIDApplication) Query(reqQuery types.RequestQuery) (resQuery types.Re
 			resQuery.Log = "does not exist"
 		}
 
+	} else if method == "CreateIDPResponse" {
+		// TODO add query logic for idp response
+		resQuery.Log = "success"
 	} else {
 		resQuery.Log = "wrong method name"
 		return

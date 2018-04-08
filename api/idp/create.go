@@ -55,7 +55,6 @@ func CreateResponse(c echo.Context) error {
 
 	// TODO: Create blockchain request
 	response := createResponse()
-
 	/*
 		path := buildBroadcastPath(response)
 		var body ResponseDeliver
