@@ -3,8 +3,11 @@ localDB/
 vendor/
 Gopkg.lock
 
-# tendermint data
+# Tendermint data
 /config/tendermint/RP/data
 /config/tendermint/IdP/data
 /config/tendermint/RP/config
 /config/tendermint/IdP/config
+
+# Editor
+.vscode

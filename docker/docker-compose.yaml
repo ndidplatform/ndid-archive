@@ -1,0 +1,40 @@
+version: '3'
+services:
+  ndid-abci-idp:
+    build: .
+    command: ["/abci-server", "tcp://0.0.0.0:46000"]
+  tm-idp:
+    build:
+      context: .
+      dockerfile: Dockerfile-tendermint
+    depends_on:
+      - ndid-abci-idp
+    volumes:
+      - ./data/tm-idp:/tendermint
+    command: ["idp"]
+  ndid-api-idp:
+    build: .
+    depends_on:
+      - tm-idp
+    ports:  
+     - "8000:8000"
+    command: ["/api-server", "-port", ":8000", "-tenderm", "tm-idp:45000"]
+  ndid-abci-rp:
+      build: .
+      command: ["/abci-server", "tcp://0.0.0.0:46001"]
+  tm-rp:
+    build:
+      context: .
+      dockerfile: Dockerfile-tendermint
+    depends_on:
+      - ndid-abci-rp
+    volumes:
+      - ./data/tm-rp:/tendermint
+    command: ["rp"]
+  ndid-api-rp:
+    build: .
+    depends_on:
+      - tm-rp
+    ports:
+    - "8001:8001"
+    command: ["/api-server", "-port", ":8001", "-tenderm", "tm-rp:45001"]
