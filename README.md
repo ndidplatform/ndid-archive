@@ -29,4 +29,4 @@
 
 ## API specs
 ### Testing
-1. run test api for rp `silk -silk.url="http://127.0.0.1:8000" api/specs/relying_party/*.silk.md`
+1. run test api for rp `silk -silk.url="http://127.0.0.1:8001" api/specs/relying_party/*.silk.md`
