@@ -27,6 +27,18 @@
 1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go run api/server.go -port :8001 -tenderm 127.0.0.1:45001`
 1. test call API `curl http://127.0.0.1:8001/identity/cid/1234567890123`
 
+
+## Run in Docker
+Required
+- Docker CE [Install docker](https://docs.docker.com/install/)
+- docker-compose [Install docker-compose](https://docs.docker.com/compose/install/)
+
+```
+cd docker
+docker-compose up
+```
+
 ## API specs
+
 ### Testing
 1. run test api for rp `silk -silk.url="http://127.0.0.1:8000" api/specs/relying_party/*.silk.md`
