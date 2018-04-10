@@ -12,6 +12,7 @@
 1. `go get github.com/ndidplatform/ndid`
 1. `go get -u github.com/tendermint/abci/cmd/abci-cli`
 1. `cd $GOPATH/src/github.com/ndidplatform/ndid` and then `go get ./...`
+1. `go get -u github.com/tendermint/tendermint/cmd/tendermint`
 
 ## Run IdP node
 1. open 4 terminal window
