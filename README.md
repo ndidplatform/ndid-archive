@@ -4,9 +4,16 @@
 ## Prerequire
 - Go version >= 1.9.2
 - [Install Go](https://golang.org/dl/) follow by [installation instructions.](https://golang.org/doc/install)
-- Tendermint >= 0.16.0
-- [Install Tendermint](http://tendermint.readthedocs.io/projects/tools/en/master/index.html) follow by [installation instructions.](http://tendermint.readthedocs.io/projects/tools/en/master/install.html)
 - [Go dependency management tool](https://github.com/golang/dep)
+
+- Tendermint 0.16.0
+  - [Install Tendermint](http://tendermint.readthedocs.io/projects/tools/en/v0.16.0/) by following [installation instructions.](http://tendermint.readthedocs.io/projects/tools/en/v0.16.0/install.html)  
+  **Important**: After running `go get github.com/tendermint/tendermint/cmd/tendermint`, you need to change tendermint cloned source to version 0.16.0 before continuing the installation)
+  
+    ```
+    cd $GOPATH/src/github.com/tendermint/tendermint
+    git checkout v0.16.0
+    ```
 
 ## Setup
 1. `go get github.com/ndidplatform/ndid`
