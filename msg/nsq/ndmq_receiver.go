@@ -9,7 +9,7 @@ type Receiver struct {
 	nsqConsumer		*nsq.Consumer
 	topic					string
 	channel				string
-	handler  		func(string, string)
+	handler  			func(string, string)
 }
 
 func NewReceiver(topic string, channel string) (*Receiver, error) {
