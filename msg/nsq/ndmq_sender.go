@@ -5,7 +5,7 @@ import (
 )
 
 type Sender struct {
-	nsqProducer		*nsq.Producer
+	nsqProducer *nsq.Producer
 }
 
 func NewSender(addr string) (*Sender, error) {
@@ -15,11 +15,11 @@ func NewSender(addr string) (*Sender, error) {
 		return nil, err
 	}
 
-  // Verify newly created producer
-  err = q.Ping()
-  if err != nil {
-    return nil, err
-  }
+	// Verify newly created producer
+	err = q.Ping()
+	if err != nil {
+		return nil, err
+	}
 
 	r := &Sender{
 		nsqProducer: q,
@@ -29,14 +29,14 @@ func NewSender(addr string) (*Sender, error) {
 }
 
 // Send message with specified topic to the configured NSQD.
-//  	topic    string
-//    msg      string
+//		topic			string
+//		msg			string
 // return err if msg could not be sent
 func (s *Sender) Send(topic string, msg string) error {
-  err := s.nsqProducer.Publish(topic, []byte(msg))
-  if err != nil {
-      return err
-  }
+	err := s.nsqProducer.Publish(topic, []byte(msg))
+	if err != nil {
+		return err
+	}
 
-  return nil
+	return nil
 }

@@ -6,10 +6,10 @@ import (
 )
 
 type Receiver struct {
-	nsqConsumer		*nsq.Consumer
-	topic					string
-	channel				string
-	handler  			func(string, string)
+	nsqConsumer *nsq.Consumer
+	topic       string
+	channel     string
+	handler     func(string, string)
 }
 
 func NewReceiver(topic string, channel string) (*Receiver, error) {
@@ -21,15 +21,15 @@ func NewReceiver(topic string, channel string) (*Receiver, error) {
 
 	r := &Receiver{
 		nsqConsumer: q,
-		topic: topic,
-		channel: channel,
+		topic:       topic,
+		channel:     channel,
 	}
 
 	return r, nil
 }
 
 // Set handler function when messages are received.
-//  	handler	func(string, string)
+//    handler  func(string, string)
 func (r *Receiver) SetHandler(handler func(string, string)) {
 	r.handler = handler
 	r.nsqConsumer.AddHandler(nsq.HandlerFunc(func(message *nsq.Message) error {
@@ -40,7 +40,7 @@ func (r *Receiver) SetHandler(handler func(string, string)) {
 }
 
 // Connect the receiver to the NSQD.
-//  	addr	string	[ip:port]
+//    addr  string  [ip:port]
 // return error if unable to connect or handler is nil.
 func (r *Receiver) ConnectToNSQD(addr string) error {
 	if r.handler == nil {
