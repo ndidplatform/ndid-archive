@@ -9,7 +9,7 @@ type Receiver struct {
 	nsqConsumer		*nsq.Consumer
 	topic					string
 	channel				string
-	callback  		func(string, string)
+	handler  		func(string, string)
 }
 
 func NewReceiver(topic string, channel string) (*Receiver, error) {
@@ -28,26 +28,26 @@ func NewReceiver(topic string, channel string) (*Receiver, error) {
 	return r, nil
 }
 
-// Set callback function when messages are received.
-//  	callback	func(string, string)
-func (r *Receiver) SetCallback(callback func(string, string)) {
-	r.callback = callback
+// Set handler function when messages are received.
+//  	handler	func(string, string)
+func (r *Receiver) SetHandler(handler func(string, string)) {
+	r.handler = handler
 	r.nsqConsumer.AddHandler(nsq.HandlerFunc(func(message *nsq.Message) error {
 		msgString := string(message.Body)
-		callback(r.topic, msgString)
+		handler(r.topic, msgString)
 		return nil
 	}))
 }
 
 // Connect the receiver to the NSQD.
-//  	targetNSQD	string	[ip:port]
-// return error if unable to connect or callback is nil.
-func (r *Receiver) ConnectToNSQD(targetNSQD string) error {
-	if r.callback == nil {
+//  	addr	string	[ip:port]
+// return error if unable to connect or handler is nil.
+func (r *Receiver) ConnectToNSQD(addr string) error {
+	if r.handler == nil {
 		return errors.New("Callback is not set")
 	}
 
-	err := r.nsqConsumer.ConnectToNSQD(targetNSQD)
+	err := r.nsqConsumer.ConnectToNSQD(addr)
 	if err != nil {
 		return err
 	}
